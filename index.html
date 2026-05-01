@@ -132,7 +132,7 @@
     }
 
     .profile-name { font-size: 1.02rem; font-weight: 700; margin-bottom: 8px; }
-    .profile-desc { font-size: 0.84rem; line-height: 1.5; color: var(--muted); margin-bottom: 14px; }
+    .profile-desc { font-size: 0.84rem; line-height: 1.5; color: #192D64; margin-bottom: 14px; }
 
     .profile-stats {
       display: grid;
@@ -246,6 +246,11 @@
 
     .kf-icon { font-size: 1.25rem; flex-shrink: 0; margin-top: 1px; }
     em { font-style: italic; }
+
+    .profile-card,
+    .profile-card * {
+      color: #192D64 !important;
+    }
 
     @media (max-width: 900px) {
       .chart-row { grid-template-columns: 1fr; }
@@ -454,8 +459,8 @@ function stackedChartHTML(grade, type) {
 
   const segments = type === 'daz'
     ? [
-        { key: 'dae', label: 'DaE', color: '#6D9DC5' },
-        { key: 'daz', label: 'DaZ', color: '#F4A261' }
+        { key: 'daz', label: 'DaZ', color: '#F4A261' },
+        { key: 'dae', label: 'DaE', color: '#6D9DC5' }
       ]
     : [
         { key: 'genderNA', label: 'NA', color: '#A9A9A9' },
@@ -464,7 +469,10 @@ function stackedChartHTML(grade, type) {
       ];
 
   const legendSegments = type === 'daz'
-    ? segments
+    ? [
+        { label: 'DaE', color: '#6D9DC5' },
+        { label: 'DaZ', color: '#F4A261' }
+      ]
     : [
         { label: 'männlich', color: '#7c2434' },
         { label: 'weiblich', color: '#E07A5F' },
