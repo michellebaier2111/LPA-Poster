@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LPA Ergebnisse – Rezeptiver Wortschatz</title>
+  <title>Rezeptiver Wortschatz in der Grundschule: Entwicklungsverläufe und Risikoprofile</title>
   <style>
     :root {
       --bg: #f4f1ec;
@@ -22,11 +22,11 @@
       --daz: #F4A261;
       --mzp1: #192D64;
       --mzp2: #6F2735;
-      --p1: #1e3a5f;
-      --p2: #2d7d46;
-      --p3: #c47c00;
-      --p4: #b83232;
-      --p5: #7b3fa0;
+      --p-high: #1e3a5f;
+      --p-good: #2d7d46;
+      --p-mid: #c47c00;
+      --p-low: #b83232;
+      --p-drop: #7b3fa0;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -101,20 +101,21 @@
     .profiles-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-auto-rows: 1fr;
       gap: 16px;
       margin-bottom: 28px;
+      align-items: stretch;
     }
 
     .profile-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-top: 6px solid var(--accent);
-      border-radius: 10px;
-      padding: 18px;
-    }
+      border-radiu
 
     .profile-badge {
       display: inline-block;
+      width: fit-content;
       background: #ece8e2;
       padding: 4px 10px;
       border-radius: 20px;
@@ -131,11 +132,23 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
+      margin-top: auto;
     }
 
-    .stat { background: #f7f4ef; border-radius: 8px; text-align: center; padding: 8px 4px; }
+    .stat {
+      background: #f7f4ef;
+      border-radius: 8px;
+      text-align: center;
+      padding: 8px 4px;
+      min-height: 78px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
     .stat-val { font-weight: 700; font-size: 1rem; }
-    .stat-lbl { font-size: 0.7rem; color: var(--muted); margin-top: 3px; }
+    .stat-lbl { font-size: 0.7rem; color: var(--muted); margin-top: 3px; letter-spacing: .03em; }
+    .stat-measure { font-size: 0.72rem; color: var(--muted); margin-bottom: 2px; }
 
     .chart-row {
       display: grid;
@@ -183,7 +196,6 @@
     .grid-line { stroke: #e8e2da; stroke-width: 1; }
     .axis-line { stroke: #bdb6aa; stroke-width: 1; }
     .bar-label { font-size: 12px; fill: #111; text-anchor: middle; }
-    .point-label { font-size: 11px; fill: #111; }
 
     .overview-grid {
       display: grid;
@@ -212,7 +224,6 @@
     .text-box h3 { font-size: 1rem; color: var(--accent); margin-bottom: 12px; }
     .text-box p, .text-box li { font-size: 0.92rem; line-height: 1.7; }
     .text-box ul { padding-left: 20px; }
-    .small-note { color: var(--muted); font-size: 0.8rem; margin-top: 8px; line-height: 1.5; }
 
     .key-finding {
       display: flex;
@@ -239,10 +250,10 @@
 <body>
 
 <header>
-  <h1>Rezeptiver Wortschatz in der Grundschule:<br>Klassenstufenspezifische Entwicklungsprofile</h1>
+  <h1>Rezeptiver Wortschatz in der Grundschule:<br>Entwicklungsverläufe und Risikoprofile</h1>
   <p>
-    Latent Profile Analysis (LPA) für Klassenstufe 1, 2 und 3 ·
-    Zwei Messzeitpunkte (MZP1 und MZP2) ·
+    Latente Profilanalyse für Klassenstufe 1, 2 und 3 ·
+    Zwei Messzeitpunkte (MZP I und MZP II) ·
     Berücksichtigung von Geschlecht und sprachlichem Hintergrund (DaE/DaZ)
   </p>
 </header>
@@ -259,7 +270,7 @@
   <div class="section-title" style="color: var(--k1)">Klassenstufe 1 · 4 Profile · <em>N</em> = 602</div>
   <div id="k1-cards" class="profiles-grid"></div>
   <div class="chart-row">
-    <div class="chart-card"><div class="chart-title">Entwicklungsverläufe MZP1 → MZP2</div><div id="k1-lines"></div></div>
+    <div class="chart-card"><div class="chart-title">Entwicklungsverläufe MZP I → MZP II</div><div id="k1-lines"></div></div>
     <div class="chart-card"><div class="chart-title">Profilgrößen</div><div id="k1-freq"></div></div>
     <div class="chart-card"><div class="chart-title">Sprachlicher Hintergrund pro Profil</div><div id="k1-daz"></div></div>
     <div class="chart-card"><div class="chart-title">Geschlecht pro Profil</div><div id="k1-gender"></div></div>
@@ -270,7 +281,7 @@
   <div class="section-title" style="color: var(--k2)">Klassenstufe 2 · 5 Profile · <em>N</em> = 527</div>
   <div id="k2-cards" class="profiles-grid"></div>
   <div class="chart-row">
-    <div class="chart-card"><div class="chart-title">Entwicklungsverläufe MZP1 → MZP2</div><div id="k2-lines"></div></div>
+    <div class="chart-card"><div class="chart-title">Entwicklungsverläufe MZP I → MZP II</div><div id="k2-lines"></div></div>
     <div class="chart-card"><div class="chart-title">Profilgrößen</div><div id="k2-freq"></div></div>
     <div class="chart-card"><div class="chart-title">Sprachlicher Hintergrund pro Profil</div><div id="k2-daz"></div></div>
     <div class="chart-card"><div class="chart-title">Geschlecht pro Profil</div><div id="k2-gender"></div></div>
@@ -281,7 +292,7 @@
   <div class="section-title" style="color: var(--k3)">Klassenstufe 3 · 4 Profile · <em>N</em> = 544</div>
   <div id="k3-cards" class="profiles-grid"></div>
   <div class="chart-row">
-    <div class="chart-card"><div class="chart-title">Entwicklungsverläufe MZP1 → MZP2</div><div id="k3-lines"></div></div>
+    <div class="chart-card"><div class="chart-title">Entwicklungsverläufe MZP I → MZP II</div><div id="k3-lines"></div></div>
     <div class="chart-card"><div class="chart-title">Profilgrößen</div><div id="k3-freq"></div></div>
     <div class="chart-card"><div class="chart-title">Sprachlicher Hintergrund pro Profil</div><div id="k3-daz"></div></div>
     <div class="chart-card"><div class="chart-title">Geschlecht pro Profil</div><div id="k3-gender"></div></div>
@@ -296,24 +307,18 @@
     <div class="overview-card"><h4 style="color: var(--k3)">Klassenstufe 3</h4><div id="ov-k3"></div></div>
   </div>
   <div class="chart-row">
-    <div class="chart-card wide"><div class="chart-title">Vergleich aller Profile: Mittelwerte zu MZP1 und MZP2</div><div id="ov-compare"></div></div>
+    <div class="chart-card wide"><div class="chart-title">Vergleich aller Profile: Mittelwerte zu MZP I und MZP II</div><div id="ov-compare"></div></div>
     <div class="chart-card wide"><div class="chart-title">Vergleich aller Profile: DaZ-Anteil</div><div id="ov-daz"></div></div>
   </div>
 </div>
 
 <div id="discussion" class="panel">
   <div class="section-title">Interpretation der Ergebnisse</div>
-
   <div class="text-box">
     <h3>Forschungsfrage 1</h3>
     <p><strong>Inwiefern lässt sich die Entwicklung des passiven Wortschatzes im Verlauf der Grundschulzeit durch mehrere Profile beschreiben?</strong></p>
-    <p>
-      Die Ergebnisse zeigen, dass sich die Entwicklung des rezeptiven Wortschatzes in allen drei Klassenstufen
-      durch mehrere Profile beschreiben lässt. Je nach Klassenstufe wurden vier bzw. fünf Profile identifiziert.
-      Die Profile unterscheiden sich insbesondere hinsichtlich des Ausgangsniveaus und der Veränderung zwischen MZP1 und MZP2.
-    </p>
+    <p>Die Ergebnisse zeigen, dass sich die Entwicklung des rezeptiven Wortschatzes in allen drei Klassenstufen durch mehrere Profile beschreiben lässt. Je nach Klassenstufe wurden vier bzw. fünf Profile identifiziert. Die Profile unterscheiden sich insbesondere hinsichtlich des Ausgangsniveaus und der Veränderung zwischen MZP I und MZP II.</p>
   </div>
-
   <div class="text-box">
     <h3>Forschungsfrage 2</h3>
     <p><strong>Unterscheiden sich die Profile hinsichtlich Deutsch als Erst- oder Zweitsprache, Geschlecht und Klassenstufe?</strong></p>
@@ -323,66 +328,44 @@
       <li><strong>Klassenstufe:</strong> Da die Profilanalysen getrennt für Klassenstufe 1, 2 und 3 durchgeführt wurden, ist der Vergleich der Klassenstufen deskriptiv zu verstehen.</li>
     </ul>
   </div>
-
   <div class="text-box">
     <h3>Zentrale Befunde auf einen Blick</h3>
-
-    <div class="key-finding"><span class="kf-icon">📈</span><span>In allen Klassenstufen lassen sich mehrere unterscheidbare Entwicklungsprofile des rezeptiven Wortschatzes identifizieren. Die Profile unterscheiden sich vor allem im Ausgangsniveau und in der Veränderung zwischen MZP1 und MZP2.</span></div>
+    <div class="key-finding"><span class="kf-icon">📈</span><span>In allen Klassenstufen lassen sich mehrere unterscheidbare Entwicklungsprofile des rezeptiven Wortschatzes identifizieren. Die Profile unterscheiden sich vor allem im Ausgangsniveau und in der Veränderung zwischen MZP I und MZP II.</span></div>
     <div class="key-finding"><span class="kf-icon">🔎</span><span>Besonders auffällig sind kleinere Profile mit niedrigem Ausgangsniveau. Diese Gruppen zeigen teilweise deutliche Zuwächse, bleiben aber häufig auf einem niedrigeren Leistungsniveau als die übrigen Profile.</span></div>
     <div class="key-finding"><span class="kf-icon">🌐</span><span>Der sprachliche Hintergrund hängt deutlich mit der Profilzugehörigkeit zusammen: DaZ-Kinder sind in Profilen mit niedrigerem Wortschatzniveau häufiger vertreten.</span></div>
     <div class="key-finding"><span class="kf-icon">👥</span><span>Für Geschlecht zeigen sich keine vergleichbar klaren Muster. Die Geschlechtsverteilungen sollten wegen fehlender Angaben vorsichtig interpretiert werden.</span></div>
     <div class="key-finding"><span class="kf-icon">🏫</span><span>Die Profilstruktur unterscheidet sich zwischen den Klassenstufen. Da die Analysen klassenstufenspezifisch durchgeführt wurden, ist dieser Vergleich jedoch primär deskriptiv zu verstehen.</span></div>
   </div>
-
   <div class="text-box">
     <h3>Implikationen für Diagnostik und Förderung</h3>
     <p>Die Ergebnisse sprechen dafür, dass eine profilbasierte Betrachtung des rezeptiven Wortschatzes diagnostisch hilfreich sein kann. Statt nur durchschnittliche Leistungswerte zu betrachten, können unterschiedliche Entwicklungsverläufe sichtbar gemacht werden.</p>
     <p>Besonders Kinder in Profilen mit niedrigem Ausgangsniveau sollten frühzeitig identifiziert und gezielt unterstützt werden. Der erhöhte Anteil von DaZ-Kindern in mehreren dieser Profile weist darauf hin, dass sprachlicher Hintergrund bei der Förderplanung berücksichtigt werden sollte.</p>
     <p>Für die schulische Praxis bedeutet dies, dass Wortschatzförderung möglichst differenziert erfolgen sollte: Kinder mit stabilem hohem Niveau benötigen andere Lernangebote als Kinder mit niedrigem Ausgangsniveau, Rückgangstendenzen oder verzögerter Entwicklung.</p>
   </div>
-
-  <div class="text-box">
-    <h3>Methodischer Hinweis</h3>
-    <p>Die Profilanalysen wurden getrennt für Klassenstufe 1, 2 und 3 durchgeführt. Daher beschreiben die Profile klassenstufenspezifische Muster. Direkte inferenzstatistische Aussagen über Unterschiede zwischen Klassenstufen sollten entsprechend vorsichtig formuliert werden.</p>
-  </div>
+  <div class="text-box"><h3>Methodischer Hinweis</h3><p>Die Profilanalysen wurden getrennt für Klassenstufe 1, 2 und 3 durchgeführt. Daher beschreiben die Profile klassenstufenspezifische Muster. Direkte inferenzstatistische Aussagen über Unterschiede zwischen Klassenstufen sollten entsprechend vorsichtig formuliert werden.</p></div>
 </div>
 
 <script>
 const DATA = {
-  k1: {
-    label: "Klassenstufe 1",
-    n: 602,
-    color: "#5B85AA",
-    profiles: [
-      { id: "P1", name: "Stabil hohes Profil", description: "Sehr hohes Ausgangsniveau mit weitgehend stabiler Entwicklung.", n: 149, mzp1: 27.53, mzp2: 27.06, diff: -0.47, freq: 24.8, dae: 100.0, daz: 0.0, female: 40.9, male: 45.0, genderNA: 14.1, cardColor: "#1e3a5f" },
-      { id: "P2", name: "Typisch aufholendes Profil", description: "Mittleres bis hohes Ausgangsniveau mit erkennbarem Zuwachs.", n: 275, mzp1: 23.22, mzp2: 26.21, diff: 2.99, freq: 45.7, dae: 100.0, daz: 0.0, female: 40.0, male: 35.3, genderNA: 24.7, cardColor: "#2d7d46" },
-      { id: "P3", name: "Unterdurchschnittlich aufholendes Profil", description: "Niedrigeres Ausgangsniveau mit deutlichem Zuwachs zwischen MZP1 und MZP2.", n: 163, mzp1: 15.37, mzp2: 19.90, diff: 4.53, freq: 27.1, dae: 87.1, daz: 12.9, female: 33.7, male: 39.3, genderNA: 27.0, cardColor: "#c47c00" },
-      { id: "P4", name: "Niedriges Ausgangsniveau – starker Zuwachs", description: "Sehr niedriges Ausgangsniveau, aber der stärkste beobachtete Zuwachs innerhalb der Klassenstufe.", n: 15, mzp1: 4.47, mzp2: 20.27, diff: 15.80, freq: 2.5, dae: 80.0, daz: 20.0, female: 33.3, male: 46.7, genderNA: 20.0, cardColor: "#b83232" }
-    ]
-  },
-  k2: {
-    label: "Klassenstufe 2",
-    n: 527,
-    color: "#3b6bb4",
-    profiles: [
-      { id: "P1", name: "Stabil hohes Profil", description: "Sehr hohes Ausgangsniveau mit leichtem Rückgang auf weiterhin hohem Niveau.", n: 128, mzp1: 28.81, mzp2: 28.20, diff: -0.61, freq: 24.3, dae: 100.0, daz: 0.0, female: 42.2, male: 36.7, genderNA: 21.1, cardColor: "#1e3a5f" },
-      { id: "P2", name: "Hohes aufholendes Profil", description: "Überdurchschnittliches Ausgangsniveau mit leichtem Zuwachs.", n: 171, mzp1: 26.84, mzp2: 28.32, diff: 1.48, freq: 32.4, dae: 99.4, daz: 0.6, female: 40.9, male: 32.7, genderNA: 26.3, cardColor: "#2d7d46" },
-      { id: "P3", name: "Mittleres aufholendes Profil", description: "Mittleres Ausgangsniveau mit deutlichem Zuwachs.", n: 126, mzp1: 22.79, mzp2: 26.53, diff: 3.74, freq: 23.9, dae: 98.4, daz: 1.6, female: 35.7, male: 42.9, genderNA: 21.4, cardColor: "#c47c00" },
-      { id: "P4", name: "Rückgangsprofil", description: "Hohes Ausgangsniveau, aber deutlicher Rückgang zwischen MZP1 und MZP2.", n: 37, mzp1: 26.22, mzp2: 20.76, diff: -5.46, freq: 7.0, dae: 81.1, daz: 18.9, female: 54.1, male: 43.2, genderNA: 2.7, cardColor: "#7b3fa0" },
-      { id: "P5", name: "Niedriges aufholendes Profil", description: "Niedriges Ausgangsniveau mit erkennbarem Zuwachs und erhöhtem DaZ-Anteil.", n: 65, mzp1: 14.05, mzp2: 19.55, diff: 5.50, freq: 12.3, dae: 69.2, daz: 30.8, female: 30.8, male: 50.8, genderNA: 18.5, cardColor: "#b83232" }
-    ]
-  },
-  k3: {
-    label: "Klassenstufe 3",
-    n: 544,
-    color: "#440154",
-    profiles: [
-      { id: "P1", name: "Stabil hohes Profil", description: "Sehr hohes Ausgangsniveau mit weitgehend stabiler Entwicklung.", n: 249, mzp1: 29.27, mzp2: 29.04, diff: -0.23, freq: 45.8, dae: 100.0, daz: 0.0, female: 49.0, male: 34.9, genderNA: 16.1, cardColor: "#1e3a5f" },
-      { id: "P2", name: "Hohes aufholendes Profil", description: "Überdurchschnittliches Ausgangsniveau mit leichtem Zuwachs.", n: 188, mzp1: 27.03, mzp2: 28.68, diff: 1.65, freq: 34.6, dae: 98.9, daz: 1.1, female: 38.3, male: 45.7, genderNA: 16.0, cardColor: "#2d7d46" },
-      { id: "P3", name: "Unterdurchschnittlich aufholendes Profil", description: "Niedrigeres Ausgangsniveau mit moderatem Zuwachs.", n: 90, mzp1: 22.99, mzp2: 25.77, diff: 2.78, freq: 16.5, dae: 93.3, daz: 6.7, female: 38.9, male: 51.1, genderNA: 10.0, cardColor: "#c47c00" },
-      { id: "P4", name: "Niedriges Niveau – geringer Zuwachs", description: "Kleine Gruppe mit niedrigem Niveau und nur geringem Zuwachs.", n: 17, mzp1: 16.82, mzp2: 18.24, diff: 1.42, freq: 3.1, dae: 82.4, daz: 17.6, female: 29.4, male: 47.1, genderNA: 23.5, cardColor: "#b83232" }
-    ]
-  }
+  k1: { label: "Klassenstufe 1", n: 602, color: "#5B85AA", profiles: [
+    { id: "Profil 1", name: "Niedriges Ausgangsniveau – starker Zuwachs", description: "Sehr niedriges Ausgangsniveau, aber der stärkste beobachtete Zuwachs innerhalb der Klassenstufe.", n: 15, mzp1: 4.47, mzp2: 20.27, diff: 15.80, freq: 2.5, dae: 80.0, daz: 20.0, female: 33.3, male: 46.7, genderNA: 20.0, cardColor: "#b83232" },
+    { id: "Profil 2", name: "Unterdurchschnittlich aufholendes Profil", description: "Niedrigeres Ausgangsniveau mit deutlichem Zuwachs zwischen MZP I und MZP II.", n: 163, mzp1: 15.37, mzp2: 19.90, diff: 4.53, freq: 27.1, dae: 87.1, daz: 12.9, female: 33.7, male: 39.3, genderNA: 27.0, cardColor: "#c47c00" },
+    { id: "Profil 3", name: "Typisch aufholendes Profil", description: "Mittleres bis hohes Ausgangsniveau mit erkennbarem Zuwachs.", n: 275, mzp1: 23.22, mzp2: 26.21, diff: 2.99, freq: 45.7, dae: 100.0, daz: 0.0, female: 40.0, male: 35.3, genderNA: 24.7, cardColor: "#2d7d46" },
+    { id: "Profil 4", name: "Stabil hohes Profil", description: "Sehr hohes Ausgangsniveau mit weitgehend stabiler Entwicklung.", n: 149, mzp1: 27.53, mzp2: 27.06, diff: -0.47, freq: 24.8, dae: 100.0, daz: 0.0, female: 40.9, male: 45.0, genderNA: 14.1, cardColor: "#1e3a5f" }
+  ]},
+  k2: { label: "Klassenstufe 2", n: 527, color: "#3b6bb4", profiles: [
+    { id: "Profil 1", name: "Niedriges aufholendes Profil", description: "Niedriges Ausgangsniveau mit erkennbarem Zuwachs und erhöhtem DaZ-Anteil.", n: 65, mzp1: 14.05, mzp2: 19.55, diff: 5.50, freq: 12.3, dae: 69.2, daz: 30.8, female: 30.8, male: 50.8, genderNA: 18.5, cardColor: "#b83232" },
+    { id: "Profil 2", name: "Mittleres aufholendes Profil", description: "Mittleres Ausgangsniveau mit deutlichem Zuwachs.", n: 126, mzp1: 22.79, mzp2: 26.53, diff: 3.74, freq: 23.9, dae: 98.4, daz: 1.6, female: 35.7, male: 42.9, genderNA: 21.4, cardColor: "#c47c00" },
+    { id: "Profil 3", name: "Rückgangsprofil", description: "Hohes Ausgangsniveau, aber deutlicher Rückgang zwischen MZP I und MZP II.", n: 37, mzp1: 26.22, mzp2: 20.76, diff: -5.46, freq: 7.0, dae: 81.1, daz: 18.9, female: 54.1, male: 43.2, genderNA: 2.7, cardColor: "#7b3fa0" },
+    { id: "Profil 4", name: "Hohes aufholendes Profil", description: "Überdurchschnittliches Ausgangsniveau mit leichtem Zuwachs.", n: 171, mzp1: 26.84, mzp2: 28.32, diff: 1.48, freq: 32.4, dae: 99.4, daz: 0.6, female: 40.9, male: 32.7, genderNA: 26.3, cardColor: "#2d7d46" },
+    { id: "Profil 5", name: "Stabil hohes Profil", description: "Sehr hohes Ausgangsniveau mit leichtem Rückgang auf weiterhin hohem Niveau.", n: 128, mzp1: 28.81, mzp2: 28.20, diff: -0.61, freq: 24.3, dae: 100.0, daz: 0.0, female: 42.2, male: 36.7, genderNA: 21.1, cardColor: "#1e3a5f" }
+  ]},
+  k3: { label: "Klassenstufe 3", n: 544, color: "#440154", profiles: [
+    { id: "Profil 1", name: "Niedriges Niveau – geringer Zuwachs", description: "Kleine Gruppe mit niedrigem Niveau und nur geringem Zuwachs.", n: 17, mzp1: 16.82, mzp2: 18.24, diff: 1.42, freq: 3.1, dae: 82.4, daz: 17.6, female: 29.4, male: 47.1, genderNA: 23.5, cardColor: "#b83232" },
+    { id: "Profil 2", name: "Unterdurchschnittlich aufholendes Profil", description: "Niedrigeres Ausgangsniveau mit moderatem Zuwachs.", n: 90, mzp1: 22.99, mzp2: 25.77, diff: 2.78, freq: 16.5, dae: 93.3, daz: 6.7, female: 38.9, male: 51.1, genderNA: 10.0, cardColor: "#c47c00" },
+    { id: "Profil 3", name: "Hohes aufholendes Profil", description: "Überdurchschnittliches Ausgangsniveau mit leichtem Zuwachs.", n: 188, mzp1: 27.03, mzp2: 28.68, diff: 1.65, freq: 34.6, dae: 98.9, daz: 1.1, female: 38.3, male: 45.7, genderNA: 16.0, cardColor: "#2d7d46" },
+    { id: "Profil 4", name: "Stabil hohes Profil", description: "Sehr hohes Ausgangsniveau mit weitgehend stabiler Entwicklung.", n: 249, mzp1: 29.27, mzp2: 29.04, diff: -0.23, freq: 45.8, dae: 100.0, daz: 0.0, female: 49.0, male: 34.9, genderNA: 16.1, cardColor: "#1e3a5f" }
+  ]}
 };
 
 function showTab(id, element) {
@@ -395,16 +378,15 @@ function showTab(id, element) {
 function renderCards(gradeKey) {
   const container = document.getElementById(`${gradeKey}-cards`);
   const grade = DATA[gradeKey];
-
   container.innerHTML = grade.profiles.map(p => `
     <div class="profile-card" style="border-top-color:${p.cardColor}">
       <div class="profile-badge">${p.id} · ${p.freq}% · <em>N</em> = ${p.n}</div>
       <div class="profile-name">${p.name}</div>
       <div class="profile-desc">${p.description}</div>
       <div class="profile-stats">
-        <div class="stat"><div class="stat-val">${p.mzp1.toFixed(2)}</div><div class="stat-lbl">MZP1</div></div>
-        <div class="stat"><div class="stat-val">${p.mzp2.toFixed(2)}</div><div class="stat-lbl">MZP2</div></div>
-        <div class="stat"><div class="stat-val">${p.diff > 0 ? '+' : ''}${p.diff.toFixed(2)}</div><div class="stat-lbl">Differenz</div></div>
+        <div class="stat"><div class="stat-measure"><em>M</em></div><div class="stat-val">${p.mzp1.toFixed(2)}</div><div class="stat-lbl">MZP I</div></div>
+        <div class="stat"><div class="stat-measure"><em>M</em></div><div class="stat-val">${p.mzp2.toFixed(2)}</div><div class="stat-lbl">MZP II</div></div>
+        <div class="stat"><div class="stat-measure">&Delta;</div><div class="stat-val">${p.diff > 0 ? '+' : ''}${p.diff.toFixed(2)}</div><div class="stat-lbl">Differenz</div></div>
       </div>
     </div>
   `).join('');
@@ -428,8 +410,8 @@ function svgFrame({width=520, height=280, pad={l:48,r:16,t:18,b:38}, yMax=30, yM
 function lineChartHTML(grade, compact=false) {
   const f = svgFrame({ yMax: 30, yTicks: compact ? [0,15,30] : [0,10,20,30] });
   let content = f.grid;
-  content += `<text class="tick-label" x="${f.x(0)}" y="${f.height-12}" text-anchor="middle">MZP1</text>`;
-  content += `<text class="tick-label" x="${f.x(1)}" y="${f.height-12}" text-anchor="middle">MZP2</text>`;
+  content += `<text class="tick-label" x="${f.x(0)}" y="${f.height-12}" text-anchor="middle">MZP I</text>`;
+  content += `<text class="tick-label" x="${f.x(1)}" y="${f.height-12}" text-anchor="middle">MZP II</text>`;
   grade.profiles.forEach(p => {
     const x1 = f.x(0), x2 = f.x(1), y1 = f.y(p.mzp1), y2 = f.y(p.mzp2);
     content += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${p.cardColor}" stroke-width="3" />`;
@@ -463,15 +445,24 @@ function stackedChartHTML(grade, type) {
   const gap = 18;
   const barW = (f.innerW - gap * (n - 1)) / n;
   let content = f.grid;
+
   const segments = type === 'daz'
     ? [
         { key: 'dae', label: 'DaE', color: '#6D9DC5' },
         { key: 'daz', label: 'DaZ', color: '#F4A261' }
       ]
     : [
+        { key: 'genderNA', label: 'NA', color: '#A9A9A9' },
         { key: 'female', label: 'weiblich', color: '#E07A5F' },
-        { key: 'male', label: 'männlich', color: '#7c2434' },
-        { key: 'genderNA', label: 'NA', color: '#A9A9A9' }
+        { key: 'male', label: 'männlich', color: '#7c2434' }
+      ];
+
+  const legendSegments = type === 'daz'
+    ? segments
+    : [
+        { label: 'männlich', color: '#7c2434' },
+        { label: 'weiblich', color: '#E07A5F' },
+        { label: 'NA', color: '#A9A9A9' }
       ];
 
   grade.profiles.forEach((p,i) => {
@@ -482,15 +473,13 @@ function stackedChartHTML(grade, type) {
       const h = (val / 100) * f.innerH;
       const y = yCursor - h;
       content += `<rect x="${x}" y="${y}" width="${barW}" height="${h}" fill="${seg.color}" />`;
-      if (val >= 0.6) {
-        content += `<text class="bar-label" x="${x+barW/2}" y="${y + h/2 + 4}">${formatPct(val)}</text>`;
-      }
+      if (val >= 0.6) content += `<text class="bar-label" x="${x+barW/2}" y="${y + h/2 + 4}">${formatPct(val)}</text>`;
       yCursor = y;
     });
     content += `<text class="tick-label" x="${x+barW/2}" y="${f.height-12}" text-anchor="middle">${p.id}</text>`;
   });
 
-  const legend = `<div class="legend">${segments.map(seg => `<span class="legend-item"><span class="legend-swatch" style="background:${seg.color}"></span>${seg.label}</span>`).join('')}</div>`;
+  const legend = `<div class="legend">${legendSegments.map(seg => `<span class="legend-item"><span class="legend-swatch" style="background:${seg.color}"></span>${seg.label}</span>`).join('')}</div>`;
   return `${legend}<svg viewBox="0 0 ${f.width} ${f.height}" role="img">${content}</svg>`;
 }
 
@@ -511,7 +500,7 @@ function overviewCompareHTML() {
     });
     content += `<text class="tick-label" transform="translate(${gx+barW},${f.height-16}) rotate(-45)" text-anchor="end">${p.label}</text>`;
   });
-  const legend = `<div class="legend"><span class="legend-item"><span class="legend-swatch" style="background:#192D64"></span>MZP1</span><span class="legend-item"><span class="legend-swatch" style="background:#6F2735"></span>MZP2</span></div>`;
+  const legend = `<div class="legend"><span class="legend-item"><span class="legend-swatch" style="background:#192D64"></span>MZP I</span><span class="legend-item"><span class="legend-swatch" style="background:#6F2735"></span>MZP II</span></div>`;
   return `${legend}<svg viewBox="0 0 ${f.width} ${f.height}" role="img">${content}</svg>`;
 }
 
@@ -553,3 +542,4 @@ renderAll();
 </script>
 </body>
 </html>
+
